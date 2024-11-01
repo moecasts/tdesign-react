@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Radio, Checkbox, Button, Switch, MessagePlugin, DatePicker, Tooltip, Space } from 'tdesign-react';
 import type { FormProps } from 'tdesign-react';
 
@@ -31,6 +31,10 @@ export default function BaseForm() {
       { name: 'birthday', status: 'warning', validateMessage: { type: 'warning', message: '时间有误' } },
     ]);
   };
+
+  useEffect(() => {
+    form.getValidateMessage?.();
+  }, [form]);
 
   return (
     <Form form={form} onSubmit={onSubmit} onReset={onReset} colon labelWidth={100}>

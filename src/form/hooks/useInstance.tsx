@@ -218,6 +218,22 @@ export default function useInstance(
     });
   }
 
+  function getValidateMessage(fields?: Array<keyof FormData>) {
+    const message = {};
+
+    [...formMapRef.current.values()].forEach((formItemRef) => {
+      message[formItemRef?.current?.name] = formItemRef?.current?.getValidateMessage?.();
+    });
+
+    console.log('debug1 getValidateMessage', {
+      formRef,
+      formMapRef,
+      message,
+    });
+
+    return {};
+  }
+
   return {
     submit,
     reset,
@@ -227,6 +243,7 @@ export default function useInstance(
     setFields,
     setFieldsValue,
     setValidateMessage,
+    getValidateMessage,
     getFieldValue,
     getFieldsValue,
     currentElement: formRef.current,
